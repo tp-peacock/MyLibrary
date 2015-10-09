@@ -19,13 +19,13 @@
 			<th align="left">Author</th>
 			<th colspan='2'>Format</th>
 			<th>Read</th>
-			<th>&nbsp;</th>
+			<th colspan='2'>&nbsp;</th>
 		</tr>
 		<tr>
 			<th colspan='3'>&nbsp;</th>
 			<th>Physical</th>
 			<th>E-Book</th>
-			<th colspan='2'>&nbsp;</th>
+			<th colspan='3'>&nbsp;</th>
 		</tr>
 			
 		<% @books.each do |book| %>
@@ -37,6 +37,7 @@
 				<td align="center"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
 				<td align="center"><%= book.read ?  "\u2713" : "\u25A2" %></td>
 				<td align="center"><%= link_to("Edit", {:action => 'edit', :id => book.id}) %>
+				<td align="center"><%= link_to("Delete", {:action => 'destroy'}) %>
 			</tr>
 		<% end %>
 	</div>
