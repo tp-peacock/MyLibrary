@@ -1,0 +1,18 @@
+<table summary = "Add book" style = "width:60%">
+	<tr>
+		<th align="left">Position</th>
+		<th align="left">Title</th>
+		<th align="left">Author</th>
+		<th>Physical</th>
+		<th>E-Book</th>
+		<th>Read</th>
+	</tr>
+	<tr>
+		<td><%= f.text_field(:position) %></td>
+		<td><%= f.text_field(:title) %></td>
+		<td><%= f.text_field(:author) %></td>
+		<td align="center"><%= f.check_box(:physical)  %></td>
+		<td align="center"><%= f.check_box(:ebook) %></td>
+		<td align="center"><%= f.check_box(:read) %></td>
+	</tr>
+</table>

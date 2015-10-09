@@ -1,0 +1,13 @@
+<% @page_title = "Edit Book" %>
+<%= link_to("Home", {:controller => 'home', :action => 'index'}) %>
+
+
+<h2>Edit Book</h2>
+
+<%= form_for(:book, :url => {:action => 'update', :id => @book.id}) do |f| %>
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+		<div class="form-buttons">
+			<%= submit_tag("Update Book") %>
+		</div><br />
+<% end %>
+
