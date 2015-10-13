@@ -3,7 +3,8 @@ class BooksController < ApplicationController
   layout false
 
   def index
-    @books = Book.alphabetical
+
+    @books = Book.order(params[:sort])
   end
 
   def show
