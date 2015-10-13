@@ -37,7 +37,7 @@
 				<td align="center"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
 				<td align="center"><%= book.read ?  "\u2713" : "\u25A2" %></td>
 				<td align="center"><%= link_to("Edit", {:action => 'edit', :id => book.id}) %>
-				<td align="center"><%= link_to("Delete", {:action => 'destroy'}) %>
+				<td align="center"><%= link_to("Delete", {:action => 'destroy', :id => book.id}) %>
 			</tr>
 		<% end %>
 	</div>
