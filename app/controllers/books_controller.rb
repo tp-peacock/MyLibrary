@@ -44,7 +44,7 @@ class BooksController < ApplicationController
   private
     
     def book_params
-      params.require(:book).permit(:title, :position, :author, :physical, :ebook, :read)
+      params.require(:book).permit(:title, :processed_title, :position, :author, :physical, :ebook, :read)
     end
 
     def ordering
