@@ -2,6 +2,8 @@ class Book < ActiveRecord::Base
 
 	STOP_WORDS = %w{the a}
 
+	validates :title, presence: true
+	validates :author, presence: true
 
 
 	after_save{ set_processed_title! }

@@ -14,8 +14,17 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
-    @book.save
+    
+      @book = Book.new(book_params)
+      if @book.valid?
+        @book.save
+      else
+        flash[:notice] = @book.errors.full_messages.join(' - ')
+        
+        # errors.add(:title, "cannot be nil") if title.nil?
+        # errors.add(:author, "cannot be nil") if author.nil?
+      end
+    
     redirect_to(:action => 'index')
   end
 

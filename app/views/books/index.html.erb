@@ -1,8 +1,17 @@
 <% @page_title = "Books List" %>
+
 <%= link_to("Home", {:controller => 'home', :action => 'index'}) %>
 
 
 <h2>Books List</h2>
+
+<font color="red"><strong>
+<% if flash[:notice] %>
+	<p align="center">
+	  <%= flash[:notice] %>
+	</p>
+<% end %>
+</strong></font>
 
 <%= form_for(:book, :url => {:action => 'create'}) do |f| %>
 		<%= render(:partial => "form", :locals => {:f => f}) %>
