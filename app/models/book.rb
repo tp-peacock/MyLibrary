@@ -5,7 +5,6 @@ class Book < ActiveRecord::Base
 	validates :title, presence: true
 	validates :author, presence: true
 
-
 	after_save{ set_processed_title! }
 
 	#scope :sorted, lambda {order("books.position ASC") }

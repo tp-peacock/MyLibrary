@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 
-  layout false
+  #layout false
   helper_method :sort_column, :sort_direction
   
   def index
@@ -13,18 +13,13 @@ class BooksController < ApplicationController
   def new
   end
 
-  def create
-    
-      @book = Book.new(book_params)
-      if @book.valid?
-        @book.save
-      else
-        flash[:notice] = @book.errors.full_messages.join(' - ')
-        
-        # errors.add(:title, "cannot be nil") if title.nil?
-        # errors.add(:author, "cannot be nil") if author.nil?
-      end
-    
+  def create    
+    @book = Book.new(book_params)
+    if @book.valid?
+      @book.save
+    else
+      flash[:notice] = @book.errors.full_messages.join(' - ') 
+    end
     redirect_to(:action => 'index')
   end
 

@@ -14,10 +14,10 @@
 </strong></font>
 
 <%= form_for(:book, :url => {:action => 'create'}) do |f| %>
-		<%= render(:partial => "form", :locals => {:f => f}) %>
-		<div class="form-buttons">
-			<%= submit_tag("Add Book") %>
-		</div><br />
+	<%= render(:partial => "form", :locals => {:f => f}) %>
+	<div class="form-buttons">
+		<%= submit_tag("Add Book") %>
+	</div><br />
 <% end %>
 
 <div class"book-table">
