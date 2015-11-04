@@ -22,12 +22,12 @@
 	<table style="width:80%" align="center" class="table table-hover">
 		<thead>
 			<tr>
-				<th align="left"><%= link_to(sortable "position") %></th>
-				<th align="left"><%= link_to(sortable "title") %></th>
-				<th align="left"><%= link_to(sortable "author") %></th>
-				<th align="center">Physical</th>
-				<th align="center">E-Book</th>
-				<th align="center">Read</th>
+				<th><%= link_to(sortable "position") %></th>
+				<th><%= link_to(sortable "title") %></th>
+				<th><%= link_to(sortable "author") %></th>
+				<th class="text-center">Physical</th>
+				<th class="text-center">E-Book</th>
+				<th class="text-center">Read</th>
 				<th colspan='2'>&nbsp;</th>
 			</tr>
 		</thead>
@@ -37,11 +37,11 @@
 					<td><%= book.position %></td>
 					<td><%= book.title %></td>
 					<td><%= book.author %></td>
-					<td align="center"><%= book.physical ? "\u2713" : "\u25A2" %></td>
-					<td align="center"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
-					<td align="center"><%= book.read ?  "\u2713" : "\u25A2" %></td>
-					<td align="center"><%= link_to("Edit", {:action => 'edit', :id => book.id}) %>
-					<td align="center"><%= link_to("Delete", {:action => 'destroy', :id => book.id}) %>
+					<td class="text-center"><%= book.physical ? "\u2713" : "\u25A2" %></td>
+					<td class="text-center"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
+					<td class="text-center"><%= book.read ?  "\u2713" : "\u25A2" %></td>
+					<td class="text-center"><%= link_to("Edit", {:action => 'edit', :id => book.id}) %>
+					<td class="text-center"><%= link_to("Delete", {:action => 'destroy', :id => book.id}) %>
 				</tr>
 			<% end %>
 		</tbody>

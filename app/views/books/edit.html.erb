@@ -5,8 +5,5 @@
 
 <%= form_for(:book, :url => {:action => 'update', :id => @book.id}) do |f| %>
 	<%= render(:partial => "form", :locals => {:f => f}) %>
-	<div class="form-buttons">
-		<%= submit_tag("Update Book") %>
-	</div><br />
 <% end %>
 
