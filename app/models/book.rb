@@ -7,9 +7,6 @@ class Book < ActiveRecord::Base
 
 	after_save{ set_processed_title! }
 
-	#scope :sorted, lambda {order("books.position ASC") }
-	#scope :alphabetical, lambda {order("books.title ASC") }
-
 	def set_processed_title!
 		first_word = title.split(' ').first
 		if STOP_WORDS.include? first_word.downcase

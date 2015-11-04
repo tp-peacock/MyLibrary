@@ -18,6 +18,17 @@
 	<br />
 <% end %>
 
+<div align="center">
+	<%= form_for(:search, :url => {:action => 'search'}) do |f| %>
+		<%= f.text_field(:author) %>
+		<button type="submit" class= "btn btn-default btn-xs">
+			Search
+		</button>
+	<% end %>	
+</div>
+<br />
+
+
 <div class"book-table">
 	<table style="width:80%" align="center" class="table table-hover">
 		<thead>

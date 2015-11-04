@@ -3,7 +3,11 @@ class BooksController < ApplicationController
   helper_method :sort_column, :sort_direction
   
   def index
-    @books = Book.order(ordering)
+    @books = if params[:author]
+      Book.where(author: params[:author]).order(ordering)
+    else
+      Book.order(ordering)
+    end
   end
 
   def show
@@ -43,6 +47,11 @@ class BooksController < ApplicationController
     book.destroy
     redirect_to(:action => 'index')
   end
+
+  def search
+    redirect_to(:action => 'index', author: params[:search][:author])
+  end
+
 
   private
     
