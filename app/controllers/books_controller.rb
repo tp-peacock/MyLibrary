@@ -5,6 +5,9 @@ class BooksController < ApplicationController
   def index
     @books = if params[:author]
       Book.where(author: params[:author]).order(ordering)
+    elsif params[:title]
+      @books = params[:title]
+      Book.where(title: params[:title]).order(ordering)
     else
       Book.order(ordering)
     end
