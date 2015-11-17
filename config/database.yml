@@ -56,12 +56,8 @@ test:
   password:
 
 production:
+  database: store_production
   adapter: postgresql
-  host: ec2-107-21-221-107.compute-1.amazonaws.com
-  encoding: unicode
-  database: d1jjteah02gqr2
-  pool: 5
-  username: wbhjlprujyigwf
-  password: ItYHiHzbI4-7Xx6k0HOmpd937B
-
+  host: localhost
+  password: 
 
