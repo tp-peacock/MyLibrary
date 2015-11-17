@@ -1,5 +1,3 @@
-#require params
-
 module ApplicationHelper
 	
 	def sortable(column, column_title = nil)

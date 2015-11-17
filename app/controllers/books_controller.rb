@@ -52,7 +52,14 @@ class BooksController < ApplicationController
   end
 
   def search
-    redirect_to(:action => 'index', author: params[:search][:author])
+    #binding.pry
+    if Book.where(:title => params[:search][:query]).exists? && Book.where(:author => params[:search][:query]).exists?
+      redirect_to(:action => 'index', processed_title: params[:search][:query], author: params[:search][:query])
+    elsif Book.where(:title => params[:search][:query]).exists?
+      redirect_to(:action => 'index', processed_title: params[:search][:query])
+    else
+      redirect_to(:action => 'index', author: params[:search][:query])
+    end
   end
 
 

@@ -20,7 +20,7 @@
 
 <div align="center">
 	<%= form_for(:search, :url => {:action => 'search'}) do |f| %>
-		<%= f.text_field(:author) %>
+		<%= f.text_field(:query) %>
 		<button type="submit" class= "btn btn-default btn-xs">
 			Search
 		</button>
