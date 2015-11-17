@@ -5,7 +5,7 @@ class Book < ActiveRecord::Base
 	validates :title, presence: true
 	validates :author, presence: true
 
-	after_save{ set_processed_title! }
+	after_validation :set_processed_title!	
 
 	def set_processed_title!
 		first_word = title.split(' ').first
