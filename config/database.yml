@@ -38,9 +38,7 @@
 development:
   adapter: postgresql
   host: localhost
-  encoding: unicode
   database: store_development
-  pool: 5
   username: tpeacock
   password:
 
