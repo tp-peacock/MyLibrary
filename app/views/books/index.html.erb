@@ -1,4 +1,10 @@
-<% @page_title = "Books List" %>
+<% provide(:title, "Books List") %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= yield(:title) %> Books List</title>
+</head>
+<body>
 
 <%= link_to("Home", {:controller => 'home', :action => 'index'}) %>
 
@@ -58,5 +64,8 @@
 		</tbody>
 	</table>
 </div>
+
+</body>
+</html>
 
 
