@@ -43,7 +43,12 @@ GEM
     bcrypt (3.1.10)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bootstrap_form (2.3.0)
     builder (3.2.2)
+    byebug (2.7.0)
+      columnize (~> 0.3)
+      debugger-linecache (~> 1.2)
+    client_side_validations (3.2.7)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -52,6 +57,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    columnize (0.9.0)
+    debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -168,6 +175,9 @@ DEPENDENCIES
   autoprefixer-rails
   bcrypt (= 3.1.10)
   bootstrap-sass (~> 3.2.0)
+  bootstrap_form
+  byebug
+  client_side_validations
   coffee-rails (~> 4.1.0)
   jquery-rails
   mysql

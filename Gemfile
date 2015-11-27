@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap_form'
+
 gem 'autoprefixer-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -27,6 +29,8 @@ gem 'valkyrie'
 gem 'mysql'
 
 gem 'bcrypt', '3.1.10'
+gem 'byebug'
+gem 'client_side_validations'
 
 group :production do
  # gem 'pg',             '0.17.1'
