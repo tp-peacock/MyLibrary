@@ -1,2 +1,43 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <% provide(:title, 'Sign up') %>
+</head>
+<body>
+
+<h1>Sign up</h1>
+
+<%= bootstrap_form_for (@user) do |f| %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%= f.text_field :name , icon: "user" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%= f.email_field :email %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%= f.password_field :password %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-3">
+      <%= f.password_field :password_confirmation, label: "Confirm Password" %>
+ </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>
+
+</body>
+</html>

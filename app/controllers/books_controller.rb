@@ -23,6 +23,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     if @book.valid?
       @book.save
+      flash[:success] = "New book '" + @book.title + "' added to library!"
     else
       flash[:notice] = @book.errors.full_messages.join(' - ') 
     end
@@ -37,8 +38,11 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.update_attributes(book_params)
       redirect_to(:action => 'index')
+            flash[:success] = "Book '" + @book.title + "' successfully updated!"
+
     else
       render('edit')
+            flash[:danger] = "Something went wrong and your book was not updated!"
     end
   end
 

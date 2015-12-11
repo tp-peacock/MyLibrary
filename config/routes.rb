@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'users/new'
-
+  get 'signup' => 'users#new'
   # get 'books/index'
 
   # get 'books/show'
@@ -16,6 +15,7 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  resources :users
   match ':controller(/:action(/:id))', :via => [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,7 +1,12 @@
-<% @page_title = "Books List" %>
+<% provide(:title, "Books List") %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= yield(:title) %> Books List</title>
+</head>
+<body>
 
 <%= link_to("Home", {:controller => 'home', :action => 'index'}) %>
-
 
 <h2>Books List</h2>
 
@@ -52,11 +57,14 @@
 					<td class="text-center"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
 					<td class="text-center"><%= book.read ?  "\u2713" : "\u25A2" %></td>
 					<td class="text-center"><%= link_to("Edit", {:action => 'edit', :id => book.id}) %>
-					<td class="text-center"><%= link_to("Delete", {:action => 'destroy', :id => book.id}) %>
+					<td class="text-center"><%= link_to("Delete", {:action => 'destroy', :id => book.id, :class => 'btn btn-mini btn-danger' } ) %>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
 </div>
+
+</body>
+</html>
 
 

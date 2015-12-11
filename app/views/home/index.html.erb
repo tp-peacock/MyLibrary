@@ -1,3 +1,11 @@
-<h1>MyLibrary</h1>
-
-<%= link_to('Go to the Books List >>', {:controller => 'books', :action => 'index'}) %><br />
+<% provide(:title, "Home") %>
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= yield(:title) %></title>
+</head>
+<body>
+	<h1>MyLibrary</h1>
+	<%= link_to('Go to the Books List >>', {:controller => 'books', :action => 'index'}) %><br />
+</body>
+</html>
