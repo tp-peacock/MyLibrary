@@ -10,9 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require formvalidation/framework/bootstrap.min
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require formvalidation.min
+//= require formvalidation/framework/bootstrap.min
 //= require_tree .
