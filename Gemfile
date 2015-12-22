@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'rspec'
 gem 'rspec-rails'
+gem 'capybara'
 
 gem 'pg',             '0.17.1'
 gem 'rails_12factor', '0.0.2'
