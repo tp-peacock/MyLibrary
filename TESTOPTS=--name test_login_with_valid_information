@@ -1,0 +1,69 @@
+  [1m[36m (113.7ms)[0m  [1mDROP DATABASE IF EXISTS "store_test"[0m
+  [1m[35m (650.7ms)[0m  CREATE DATABASE "store_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.3ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (8.8ms)[0m  CREATE TABLE "books" ("id" serial primary key, "title" character varying, "author" character varying, "position" integer, "format" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "physical" boolean DEFAULT 'f', "ebook" boolean DEFAULT 'f', "read" boolean DEFAULT 'f', "processed_title" character varying) 
+  [1m[36m (6.2ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "password_digest" character varying) [0m
+  [1m[35m (2.7ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")
+  [1m[36m (3.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (2.3ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151126162330')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151005135334')[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151009115842')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151009135232')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151021154642')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151030152624')[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151030153129')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151030153921')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151117154945')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20151120163342')[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20151120172319')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Run options: --seed 36219
+
+# Running:
+
+  [1m[35m (0.4ms)[0m  ALTER TABLE "books" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "books"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "books" ("created_at", "updated_at", "id") VALUES ('2016-01-06 17:08:33', '2016-01-06 17:08:33', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "books" ("created_at", "updated_at", "id") VALUES ('2016-01-06 17:08:33', '2016-01-06 17:08:33', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at", "id") VALUES ('Tom Example', 'tom@example.com', '$2a$04$7WJ0T.7uOWtCvUTKiBWR9ekoMzz00qQtsgxV1v8.5PoPP/GCUipUC', '2016-01-06 17:08:33', '2016-01-06 17:08:33', 1038054164)
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "books" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------------
+UsersLoginTest: test_login_with_valid_information
+-------------------------------------------------
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1038054164]]
+Started GET "/login" for 127.0.0.1 at 2016-01-06 17:08:33 +0000
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (11.8ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (0.4ms)
+Completed 200 OK in 7725ms (Views: 7717.8ms | ActiveRecord: 0.3ms)
+Started POST "/login" for 127.0.0.1 at 2016-01-06 17:08:41 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"session"=>{"email"=>"tom@example.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "tom@example.com"]]
+Redirected to http://www.example.com/users/1038054164
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+Started GET "/users/1038054164" for 127.0.0.1 at 2016-01-06 17:08:41 +0000
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1038054164"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1038054164]]
+  Rendered users/show.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1038054164]]
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+.
+
+Finished in 7.805578s, 0.1281 runs/s, 0.7687 assertions/s.
+
+1 runs, 6 assertions, 0 failures, 0 errors, 0 skips

@@ -1,2 +1,37 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <% provide(:title, 'Login') %>
+</head>
+<body>
+
+<h1>Login</h1>
+
+<%= bootstrap_form_tag url: login_path do |f| %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%= f.email_field :email, name: 'session[email]', id: 'session_email', 'data-fv-field' => 'session[email]' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%= f.password_field :password, name: 'session[password]', id: 'session_password', 'data-fv-field' => 'session[password]' %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+  </div>
+</div>
+<% end %>
+
+<div>
+<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+
+</body>
+</html>
