@@ -14,5 +14,9 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
-    
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(action: "edit", id: current_user.id) unless current_user?(@user)
+      end
 end
