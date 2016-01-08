@@ -1,5 +1,9 @@
 require 'test_helper'
 
+ def setup
+    @book = book(:book_test)
+  end
+
 class BooksControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
