@@ -1,15 +1,17 @@
 class BooksController < ApplicationController
 
+  before_action :logged_in_user, only: [:index, :edit, :update, :create, :destroy, :search]
+
   helper_method :sort_column, :sort_direction
-  
+
   def index
     @books = if params[:author]
-      Book.where(author: params[:author]).order(ordering)
+      current_user.books.where(author: params[:author]).order(ordering)
     elsif params[:title]
       @books = params[:title]
-      Book.where(title: params[:title]).order(ordering)
+      current_user.books.where(title: params[:title]).order(ordering)
     else
-      Book.order(ordering)
+      current_user.books.order(ordering)
     end
   end
 
@@ -20,7 +22,7 @@ class BooksController < ApplicationController
   end
 
   def create    
-    @book = Book.new(book_params)
+    @book = current_user.books.build(book_params)
     if @book.valid?
       @book.save
       flash[:success] = "New book '" + @book.title + "' added to library!"

@@ -1,9 +1,12 @@
 class Book < ActiveRecord::Base
 
+	belongs_to :user
+
 	STOP_WORDS = %w{the a}
 
 	validates :title, presence: true
 	validates :author, presence: true
+	validates :user_id, presence: true
 
 	after_validation :set_processed_title!	
 
