@@ -54,4 +54,53 @@ $(document).ready(function() {
             }
         }
         );
+
+$('.edit_user')
+        .formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                'user[name]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Name is required'
+                        }
+                    }
+                },
+                
+                'user[email]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email address is required'
+                        },
+                        emailAddress: {
+                            message: 'The input is not a valid email address'
+                        }
+                    }
+                },
+                'user[password]': {
+                    validators: {
+                        stringLength: {
+                            min: 6,
+                            message: 'Password must be six or more characters'
+                        }
+                    }
+                },
+                'user[password_confirmation]': {
+                    validators: {
+                        identical: {
+                            field: 'user[password]',
+                            message: 'Confirmed Password must match Password'
+
+                        }
+                    }
+                },
+               
+            }
+        }
+        );
 });
