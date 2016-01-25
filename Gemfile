@@ -41,6 +41,9 @@ gem 'simple_form'
 #gem 'client_side_validations-simple_form'
 
 gem 'formvalidation-rails'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 
 group :production do
  # gem 'pg',             '0.17.1'
