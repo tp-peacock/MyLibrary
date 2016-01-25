@@ -28,7 +28,8 @@ class UsersController < ApplicationController
       flash[:success] = "Profile updated"
       redirect_to @user
     else
-      render 'edit'
+      flash[:danger] = "There was a problem updating your settings. Please ensure all fields and image sizes are valid."
+      redirect_to edit_user_path(@user)
     end
   end
 
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
 private
     
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :picture)
     end
 
 end

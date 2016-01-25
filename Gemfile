@@ -23,6 +23,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'jquery-turbolinks'
+
 gem 'rspec'
 gem 'rspec-rails'
 gem 'capybara'
@@ -41,6 +43,9 @@ gem 'simple_form'
 #gem 'client_side_validations-simple_form'
 
 gem 'formvalidation-rails'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 
 group :production do
  # gem 'pg',             '0.17.1'
