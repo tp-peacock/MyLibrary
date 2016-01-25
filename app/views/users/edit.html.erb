@@ -11,7 +11,14 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails" target="_blank">change</a>
+    <a href="http://gravatar.com/emails" target="_blank">Change Gravatar Image</a>
+    <br>
+    <br>
+    <%= bootstrap_form_for(@user, html: { multipart: true }) do |f| %>
+      <span class = "picture">
+        <%= f.file_field :picture, hide_label: true %>
+      </span>
+    <% end %>
   </div>
 </div>
 <br>
