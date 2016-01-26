@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(window).load( function() {
     
     $('#new_user')
         .formValidation({
