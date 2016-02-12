@@ -6,10 +6,19 @@ class BooksController < ApplicationController
 
   def index
     @books = if params[:author]
-      current_user.books.where(author: params[:author]).order(ordering)
+      current_user.books.where('author LIKE ?', '%' + params[:author] + '%').order(ordering)
     elsif params[:title]
       @books = params[:title]
-      current_user.books.where(title: params[:title]).order(ordering)
+      current_user.books.where('title LIKE ?', '%' + params[:title] + '%').order(ordering)
+    elsif params[:read]
+      @books = params[:read]
+      current_user.books.where(read: params[:read]).order(ordering)
+    elsif params[:physical]
+      @books = params[:physical]
+      current_user.books.where(physical: params[:physical]).order(ordering)
+    elsif params[:ebook]
+      @books = params[:ebook]
+      current_user.books.where(ebook: params[:ebook]).order(ordering)
     else
       current_user.books.order(ordering)
     end
@@ -58,9 +67,12 @@ class BooksController < ApplicationController
   end
 
   def search
-    if Book.where(:title => params[:search][:query]).exists?
-      redirect_to(:action => 'index', title: params[:search][:query])
-    else
+    binding.pry
+    if Book.where('title LIKE ?', '%' + params[:search][:query] + '%').exists?
+      binding.pry
+      redirect_to(:action => 'index', title: params[:search][:query], author: params[:search][:query])
+    elsif Book.where('author LIKE ?', '%' + params[:search][:query] + '%').exists?
+      binding.pry
       redirect_to(:action => 'index', author: params[:search][:query])
     end
   end
