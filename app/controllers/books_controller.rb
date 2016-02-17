@@ -5,13 +5,51 @@ class BooksController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @books = if params[:author]
-      current_user.books.where(author: params[:author]).order(ordering)
-    elsif params[:title]
-      @books = params[:title]
-      current_user.books.where(title: params[:title]).order(ordering)
+    if params[:search].present?
+      @books = current_user.books.where('author LIKE ?', '%' + params[:search] + '%')
+      @books += current_user.books.where('title LIKE ?', '%' + params[:search] + '%')
+   
+    elsif params[:filter].present?
+      
+      filter_code_array = []
+      if params[:filter][0] == "1"
+        filter_code_array.push("physical")
+      end
+      if params[:filter][1] == "1"
+        filter_code_array.push("ebook")
+      end
+      if params[:filter][2] == "1"
+        filter_code_array.push("read")
+      end
+      
+      @books = []
+      id_holder = []
+      current_user.books.each do |book|
+        id_holder.push(book.id)
+      end 
+
+      current_user.books.each do |book|
+        if filter_code_array.include?("physical") && book.physical == false
+          id_holder.delete(book.id)
+        end
+        if filter_code_array.include?("ebook") && book.ebook == false
+          id_holder.delete(book.id)
+        end
+        if filter_code_array.include?("read") && book.read == false
+          id_holder.delete(book.id)
+        end
+        if filter_code_array.empty? && book.physical == false && book.ebook == false && book.read == false
+          id_holder = []
+          id_holder.push(book.id)
+        end
+      end
+
+      id_holder.each do |id|
+          @books += current_user.books.where(:id => id)
+      end
+
     else
-      current_user.books.order(ordering)
+      @books = current_user.books.order(ordering)
     end
   end
 
@@ -58,10 +96,15 @@ class BooksController < ApplicationController
   end
 
   def search
-    if Book.where(:title => params[:search][:query]).exists?
-      redirect_to(:action => 'index', title: params[:search][:query])
-    else
-      redirect_to(:action => 'index', author: params[:search][:query])
+    if params[:search][:query]
+      redirect_to(:action => 'index', search: params[:search][:query])
+    end
+  end
+
+  def filter
+    if params[:filter].present?
+        filter_code = [params[:filter][:physical], params[:filter][:ebook], params[:filter][:read]]
+        redirect_to(:action => 'index', filter: filter_code)
     end
   end
 
