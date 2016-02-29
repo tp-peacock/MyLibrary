@@ -6,8 +6,20 @@ class BooksController < ApplicationController
 
   def index
     if params[:search].present?
+      id_holder = []
       @books = current_user.books.where('author LIKE ?', '%' + params[:search] + '%')
       @books += current_user.books.where('title LIKE ?', '%' + params[:search] + '%')
+
+      @books.each do |book|
+        unless id_holder.include?(book.id)
+          id_holder.push(book.id)
+        end
+      end
+
+      @books = []
+      id_holder.each do |id|
+          @books += current_user.books.where(:id => id)
+      end 
    
     elsif params[:filter].present?
       
