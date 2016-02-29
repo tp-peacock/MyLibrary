@@ -24,23 +24,25 @@ class BooksController < ApplicationController
       
       @books = []
       id_holder = []
-      current_user.books.each do |book|
-        id_holder.push(book.id)
-      end 
 
-      current_user.books.each do |book|
-        if filter_code_array.include?("physical") && book.physical == false
-          id_holder.delete(book.id)
+      if filter_code_array.empty?
+        current_user.books.each do |book|
+          if book.physical == false && book.ebook == false && book.read == false
+            id_holder.push(book.id)
+          end
         end
-        if filter_code_array.include?("ebook") && book.ebook == false
-          id_holder.delete(book.id)
-        end
-        if filter_code_array.include?("read") && book.read == false
-          id_holder.delete(book.id)
-        end
-        if filter_code_array.empty? && book.physical == false && book.ebook == false && book.read == false
-          id_holder = []
+      else
+        current_user.books.each do |book|
           id_holder.push(book.id)
+          if filter_code_array.include?("physical") && book.physical == false
+            id_holder.delete(book.id)
+          end
+          if filter_code_array.include?("ebook") && book.ebook == false
+            id_holder.delete(book.id)
+          end
+          if filter_code_array.include?("read") && book.read == false
+            id_holder.delete(book.id)
+          end
         end
       end
 
@@ -51,12 +53,6 @@ class BooksController < ApplicationController
     else
       @books = current_user.books.order(ordering)
     end
-  end
-
-  def show
-  end
-
-  def new
   end
 
   def create    
@@ -84,9 +80,6 @@ class BooksController < ApplicationController
       render('edit')
             flash[:danger] = "Something went wrong and your book was not updated!"
     end
-  end
-
-  def delete
   end
 
   def destroy
