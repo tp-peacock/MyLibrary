@@ -18,10 +18,15 @@
 <% end %>
 </strong></font>
 
+
 <%= form_for(:book, :url => {:action => 'create'}) do |f| %>
 	<%= render(:partial => "form", :locals => {:f => f}) %>
 	<br />
 <% end %>
+
+</div>
+
+
 
 <div align="center">
 	<p><%= link_to('Show All Books', {:controller => 'books', :action => 'index'}) %><br /></p>
