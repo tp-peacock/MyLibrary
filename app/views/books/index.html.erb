@@ -49,9 +49,9 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td class="text-center"><%= f.check_box(:physical) %></td>
-				<td class="text-center"><%= f.check_box(:ebook) %></td>
-				<td class="text-center"><%= f.check_box(:read) %></td>
+				<td class="text-center"><%= f.check_box(:physical, {}, 'physical', '') %></td>
+				<td class="text-center"><%= f.check_box(:ebook, {}, 'ebook', '') %></td>
+				<td class="text-center"><%= f.check_box(:read, {}, 'read', '') %></td>
 				<td>
 					<button type="submit" class= "btn btn-default btn-xs">
 						Filter
