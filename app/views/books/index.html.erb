@@ -1,4 +1,5 @@
 <% provide(:title, "Books List") %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +19,23 @@
 <% end %>
 </strong></font>
 
-<div>
-	<%= form_for(:book, :url => {:action => 'create'}) do |f| %>
-		<%= render(:partial => "form", :locals => {:f => f}) %>
-		<br />
-	<% end %>
-</div>
+<div align="center">
+	 <a href='#' id="show_create_book_form">Add a New Book</a>
+			<div class="create_book_form">
+				<%= form_for(:book, :url => {:action => 'create'}) do |f| %>
+					<%= render(:partial => "form", :locals => {:f => f}) %>
+					<br />
+				<% end %>
+			</div>
+
+<script>
+		$(function() {
+  	$('a#show_create_book_form').click(function(event){
+    	event.preventDefault();
+    	$('div.create_book_form').slideDown();
+  	});
+	});
+</script>
 
 <div align="center">
 	<p><%= link_to('Show All Books', {:controller => 'books', :action => 'index'}) %><br /></p>
