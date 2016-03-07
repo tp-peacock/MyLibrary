@@ -4,3 +4,9 @@
 */
 
  div.create_book_form { display: none; } 
+ /*div.add-book-row { display: none; }*/
+ .add-book-row{
+    background: blue;
+    color:white;
+    display:none;
+}
