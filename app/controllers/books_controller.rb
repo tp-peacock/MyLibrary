@@ -5,65 +5,12 @@ class BooksController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    if params[:search].present?
-      id_holder = []
-      @books = current_user.books.where('author LIKE ?', '%' + params[:search] + '%')
-      @books += current_user.books.where('title LIKE ?', '%' + params[:search] + '%')
-
-      @books.each do |book|
-        unless id_holder.include?(book.id)
-          id_holder.push(book.id)
-        end
-      end
-
-      @books = []
-      id_holder.each do |id|
-          @books += current_user.books.where(:id => id)
-      end 
-   
+    @books = if params[:search].present?
+      Book.search(current_user, params[:search])
     elsif params[:filter].present?
-      
-      filter_code_array = []
-      if params[:filter][0] == "1"
-        filter_code_array.push("physical")
-      end
-      if params[:filter][1] == "1"
-        filter_code_array.push("ebook")
-      end
-      if params[:filter][2] == "1"
-        filter_code_array.push("read")
-      end
-      
-      @books = []
-      id_holder = []
-
-      if filter_code_array.empty?
-        current_user.books.each do |book|
-          if book.physical == false && book.ebook == false && book.read == false
-            id_holder.push(book.id)
-          end
-        end
-      else
-        current_user.books.each do |book|
-          id_holder.push(book.id)
-          if filter_code_array.include?("physical") && book.physical == false
-            id_holder.delete(book.id)
-          end
-          if filter_code_array.include?("ebook") && book.ebook == false
-            id_holder.delete(book.id)
-          end
-          if filter_code_array.include?("read") && book.read == false
-            id_holder.delete(book.id)
-          end
-        end
-      end
-
-      id_holder.each do |id|
-          @books += current_user.books.where(:id => id)
-      end
-
+      Book.filter(current_user, params[:filter])
     else
-      @books = current_user.books.order(ordering)
+      current_user.books.order(ordering)
     end
   end
 
