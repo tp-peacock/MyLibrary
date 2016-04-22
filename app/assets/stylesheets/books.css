@@ -10,3 +10,19 @@
     color:white;
     display:none;
 }
+
+#worded-column{
+  width: 20%;
+  /*min-width: 13em;*/
+}
+
+#check-box-column{
+  width: 8%;
+  text-align: center;
+}
+
+#new-book-check-boxes{
+  overflow: hidden;
+  padding-left: 3.5%;
+  padding-right: 3%;
+}
