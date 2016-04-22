@@ -1,4 +1,5 @@
 <% provide(:title, "Books List") %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +19,10 @@
 <% end %>
 </strong></font>
 
-<div>
-	<%= form_for(:book, :url => {:action => 'create'}) do |f| %>
-		<%= render(:partial => "form", :locals => {:f => f}) %>
-		<br />
-	<% end %>
+<div align="center">
+	<span onClick="toggle();">
+		<a href='#' id="show_create_book_form">Add a New Book</a>
+	</span>
 </div>
 
 <div align="center">
@@ -62,31 +62,60 @@
 <% end %>
 		
 
-
 <div class"book-table">
-	<table style="width:80%" align="center" class="table table-hover">
+	<table style="width:100%" align="center" class="table table-hover">
 		<thead>
 			<tr>
-				<th><%= link_to(sortable "position") %></th>
-				<th><%= link_to(sortable "title") %></th>
-				<th><%= link_to(sortable "author") %></th>
-				<th class="text-center">Physical</th>
-				<th class="text-center">E-Book</th>
-				<th class="text-center">Read</th>
+				<th id="worded-column"><%= link_to(sortable "position") %></th>
+				<th id="worded-column"><%= link_to(sortable "title") %></th>
+				<th id="worded-column"><%= link_to(sortable "author") %></th>
+				<th id="check-box-column" class="text-center">Physical</th>
+				<th id="check-box-column" class="text-center">E-Book</th>
+				<th id="check-box-column" class="text-center">Read</th>
 				<th colspan='2'>&nbsp;</th>
 			</tr>
 		</thead>
-		<tbody>	
+		<tbody>
+
+			<%= form_for(:book, :url => {:action => 'create'}) do |f| %>
+				<tr id="hidden" class="warning" style="display:none;">
+					<td id="worded-column">								
+						<%= f.text_field(:position) %>
+					</td>
+					<td id="worded-column">
+						<%= f.text_field(:title) %>
+					</td>
+					<td id="worded-column"> 
+						<%= f.text_field(:author) %>
+					</td>
+					<td id='new-book-check-boxes'>
+						<%= f.check_box(:physical) %>
+					</td>
+					<td id='new-book-check-boxes'>
+						<%= f.check_box(:ebook) %>
+					</td>
+					<td id='new-book-check-boxes'>
+						<%= f.check_box(:read) %>
+					</td>
+					<td colspan="2" id='check-box-column'>
+							<button type="submit" class= "btn btn-default btn-xs"> 
+									Add Book
+							</button>
+					</td>
+
+				</tr>
+			<% end %>	
+
 			<% @books.each do |book| %>
 				<tr>
-					<td><%= book.position %></td>
-					<td><%= book.title %></td>
-					<td><%= book.author %></td>
-					<td class="text-center"><%= book.physical ? "\u2713" : "\u25A2" %></td>
-					<td class="text-center"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
-					<td class="text-center"><%= book.read ?  "\u2713" : "\u25A2" %></td>
-					<td class="text-center"><%= link_to("Edit", {:action => 'edit', :id => book.id}) %>
-					<td class="text-center"><%= link_to("Delete", {:action => 'destroy', :id => book.id, :class => 'btn btn-mini btn-danger' } ) %>
+					<td id="worded-column"><%= book.position %></td>
+					<td id="worded-column"><%= book.title %></td>
+					<td id="worded-column"><%= book.author %></td>
+					<td id="check-box-column"><%= book.physical ? "\u2713" : "\u25A2" %></td>
+					<td id="check-box-column"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
+					<td id="check-box-column"><%= book.read ?  "\u2713" : "\u25A2" %></td>
+					<td id="check-box-column"><%= link_to("Edit", {:action => 'edit', :id => book.id}) %>
+					<td id="check-box-column"><%= link_to("Delete", {:action => 'destroy', :id => book.id, :class => 'btn btn-mini btn-danger' } ) %>
 				</tr>
 			<% end %>
 		</tbody>
@@ -95,5 +124,31 @@
 
 </body>
 </html>
+
+
+
+<script>
+		$(function() {
+  	$('a#show_create_book_form').click(function(e){
+    	e.preventDefault();
+    	if( document.getElementById("hidden").style.display=='none' ){
+   			document.getElementById("hidden").style.display = '';
+ 			}else{
+   			document.getElementById("hidden").style.display = 'none';
+ 			}
+    	if($('.hidden-row').is(':hidden')){
+            $('.hidden-row div').css('display','none');
+            $('.hidden-row').css('display','table-row').find('div').slideDown(1000);
+    	}
+    	else{
+        $('.hidden-row div').slideUp(1000, function(){$('.hidden-row').hide()});         
+    	}
+    	$('div.create_book_form').slideDown();
+  	});
+	});
+</script>
+
+
+
 
 

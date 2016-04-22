@@ -2,3 +2,27 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+
+ div.create_book_form { display: none; } 
+ /*div.add-book-row { display: none; }*/
+ .add-book-row{
+    background: blue;
+    color:white;
+    display:none;
+}
+
+#worded-column{
+  width: 20%;
+  /*min-width: 13em;*/
+}
+
+#check-box-column{
+  width: 8%;
+  text-align: center;
+}
+
+#new-book-check-boxes{
+  overflow: hidden;
+  padding-left: 3.5%;
+  padding-right: 3%;
+}
