@@ -15,4 +15,6 @@
 //= require bootstrap
 //= require formvalidation.min
 //= require formvalidation/framework/bootstrap.min
+//= require pickadate/picker
+//= require pickadate/picker.date
 //= require_tree .
