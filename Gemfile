@@ -43,6 +43,7 @@ gem 'formvalidation-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+gem 'pickadate-rails'
 
 group :production do
  # gem 'pg',             '0.17.1'
