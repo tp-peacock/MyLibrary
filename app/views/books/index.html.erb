@@ -11,6 +11,17 @@
 
 <h2>Books List</h2>
 
+
+<div onclick="myFunction()">
+	<%= form_for(:book, :url => {:action => 'create'}) do |f| %>
+		<%= f.text_field(:start_date) %>
+	<% end %>
+</div>
+
+
+
+
+
 <font color="red"><strong>
 <% if flash[:notice] %>
 	<p align="center">
@@ -20,9 +31,7 @@
 </strong></font>
 
 <div align="center">
-	<span onClick="toggle();">
 		<a href='#' id="show_create_book_form">Add a New Book</a>
-	</span>
 </div>
 
 <div align="center">
@@ -69,6 +78,7 @@
 				<th id="worded-column"><%= link_to(sortable "title") %></th>
 				<th id="worded-column"><%= link_to(sortable "author") %></th>
 				<th id="worded-column"><%= link_to(sortable "pages") %></th>
+				<th id="worded-column"><%= link_to(sortable "start date") %></th>				
 				<th id="check-box-column" class="text-center">Physical</th>
 				<th id="check-box-column" class="text-center">E-Book</th>
 				<th id="check-box-column" class="text-center">Read</th>
@@ -87,6 +97,11 @@
 					</td>
 					<td id="worded-column"> 
 						<%= f.text_field(:pages) %>
+					</td>
+					<td id="worded-column">
+						<div onclick="myFunction()"> 
+							<%= f.text_field(:start_date) %>
+						</div>	
 					</td>
 					<td id='new-book-check-boxes'>
 						<%= f.check_box(:physical) %>
@@ -111,6 +126,7 @@
 					<td id="worded-column"><%= book.title %></td>
 					<td id="worded-column"><%= book.author %></td>
 					<td id="worded-column"><%= book.pages %></td>
+					<td id="worded-column"><%= book.start_date.strftime("%e %B, %Y") if book.start_date? %></td>
 					<td id="check-box-column"><%= book.physical ? "\u2713" : "\u25A2" %></td>
 					<td id="check-box-column"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
 					<td id="check-box-column"><%= book.read ?  "\u2713" : "\u25A2" %></td>
@@ -146,6 +162,12 @@
     	$('div.create_book_form').slideDown();
   	});
 	});
+</script>
+
+<script>
+function myFunction() {
+    $("#book_start_date").pickadate()
+}
 </script>
 
 
