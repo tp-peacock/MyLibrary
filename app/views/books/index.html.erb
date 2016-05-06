@@ -68,6 +68,7 @@
 			<tr>
 				<th id="worded-column"><%= link_to(sortable "title") %></th>
 				<th id="worded-column"><%= link_to(sortable "author") %></th>
+				<th id="worded-column"><%= link_to(sortable "pages") %></th>
 				<th id="check-box-column" class="text-center">Physical</th>
 				<th id="check-box-column" class="text-center">E-Book</th>
 				<th id="check-box-column" class="text-center">Read</th>
@@ -83,6 +84,9 @@
 					</td>
 					<td id="worded-column"> 
 						<%= f.text_field(:author) %>
+					</td>
+					<td id="worded-column"> 
+						<%= f.text_field(:pages) %>
 					</td>
 					<td id='new-book-check-boxes'>
 						<%= f.check_box(:physical) %>
@@ -106,6 +110,7 @@
 				<tr>
 					<td id="worded-column"><%= book.title %></td>
 					<td id="worded-column"><%= book.author %></td>
+					<td id="worded-column"><%= book.pages %></td>
 					<td id="check-box-column"><%= book.physical ? "\u2713" : "\u25A2" %></td>
 					<td id="check-box-column"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
 					<td id="check-box-column"><%= book.read ?  "\u2713" : "\u25A2" %></td>
