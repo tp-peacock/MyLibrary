@@ -6,7 +6,6 @@
 </head>
 <body>
 
-<!-- % @page_title = "Edit Book" % -->
 <%= link_to("Home", {:controller => 'home', :action => 'index'}) %>
 
 <br>
@@ -16,5 +15,6 @@
 <%= form_for(:book, :url => {:action => 'update', :id => @book.id}) do |f| %>
 	<%= render(:partial => "form", :locals => {:f => f}) %>
 <% end %>
+
 </body>
 </html>

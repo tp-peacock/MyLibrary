@@ -20,9 +20,7 @@
 </strong></font>
 
 <div align="center">
-	<span onClick="toggle();">
 		<a href='#' id="show_create_book_form">Add a New Book</a>
-	</span>
 </div>
 
 <div align="center">
@@ -69,6 +67,8 @@
 				<th id="worded-column"><%= link_to(sortable "title") %></th>
 				<th id="worded-column"><%= link_to(sortable "author") %></th>
 				<th id="worded-column"><%= link_to(sortable "pages") %></th>
+				<th id="worded-column"><%= link_to(sortable "start date") %></th>
+				<th id="worded-column"><%= link_to(sortable "end date") %></th>								
 				<th id="check-box-column" class="text-center">Physical</th>
 				<th id="check-box-column" class="text-center">E-Book</th>
 				<th id="check-box-column" class="text-center">Read</th>
@@ -88,6 +88,16 @@
 					<td id="worded-column"> 
 						<%= f.text_field(:pages) %>
 					</td>
+					<td id="worded-column">
+						<div onclick="book_start_date()">
+							<%= f.text_field(:start_date) %>
+						</div>
+					</td>
+					<td id="worded-column">
+						<div onclick="book_end_date()">
+								<%= f.text_field(:end_date) %>						
+						</div>	
+					</td>
 					<td id='new-book-check-boxes'>
 						<%= f.check_box(:physical) %>
 					</td>
@@ -102,7 +112,6 @@
 									Add Book
 							</button>
 					</td>
-
 				</tr>
 			<% end %>	
 
@@ -111,6 +120,8 @@
 					<td id="worded-column"><%= book.title %></td>
 					<td id="worded-column"><%= book.author %></td>
 					<td id="worded-column"><%= book.pages %></td>
+					<td id="worded-column"><%= book.start_date.strftime("%e %B, %Y") if book.start_date? %></td>
+					<td id="worded-column"><%= book.end_date.strftime("%e %B, %Y") if book.end_date? %></td>
 					<td id="check-box-column"><%= book.physical ? "\u2713" : "\u25A2" %></td>
 					<td id="check-box-column"><%= book.ebook ? "\u2713" : "\u25A2" %></td>
 					<td id="check-box-column"><%= book.read ?  "\u2713" : "\u25A2" %></td>
@@ -124,31 +135,3 @@
 
 </body>
 </html>
-
-
-
-<script>
-		$(function() {
-  	$('a#show_create_book_form').click(function(e){
-    	e.preventDefault();
-    	if( document.getElementById("hidden").style.display=='none' ){
-   			document.getElementById("hidden").style.display = '';
- 			}else{
-   			document.getElementById("hidden").style.display = 'none';
- 			}
-    	if($('.hidden-row').is(':hidden')){
-            $('.hidden-row div').css('display','none');
-            $('.hidden-row').css('display','table-row').find('div').slideDown(1000);
-    	}
-    	else{
-        $('.hidden-row div').slideUp(1000, function(){$('.hidden-row').hide()});         
-    	}
-    	$('div.create_book_form').slideDown();
-  	});
-	});
-</script>
-
-
-
-
-
