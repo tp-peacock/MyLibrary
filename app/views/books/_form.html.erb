@@ -4,6 +4,8 @@
 			<th>Title</th>
 			<th>Author</th>
 			<th>Pages</th>
+			<th>Start Date</th>
+			<th>End Date</th>
 			<th class="text-center">Physical</th>
 			<th class="text-center">E-Book</th>
 			<th class="text-center">Read</th>
@@ -15,6 +17,16 @@
 			<td><%= f.text_field(:title) %></td>
 			<td><%= f.text_field(:author) %></td>
 			<td><%= f.text_field(:pages) %></td>
+			<td>
+				<div onclick="book_start_date()">
+					<%= f.text_field(:start_date, :value => (@book.start_date.strftime("%e %B, %Y") if @book.start_date?)) %>
+				</div>
+			</td>
+			<td>
+				<div onclick="book_end_date()">
+					<%= f.text_field(:end_date, :value => (@book.end_date.strftime("%e %B, %Y") if @book.end_date?)) %>						
+				</div>	
+			</td>
 			<td class="text-center"><%= f.check_box(:physical) %></td>
 			<td class="text-center"><%= f.check_box(:ebook) %></td>
 			<td class="text-center"><%= f.check_box(:read) %></td>
