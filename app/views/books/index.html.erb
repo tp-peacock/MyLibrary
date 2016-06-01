@@ -59,9 +59,14 @@
 		</tbody>
 <% end %>
 		
+<div id="selected-book-details" style="display:none;">
+	<p></p>
+</div>
+
+
 
 <div class"book-table">
-	<table style="width:100%" align="center" class="table table-hover">
+	<table style="width:100%" align="center" class="table table-hover" id="book-table">
 		<thead>
 			<tr>
 				<th id="worded-column"><%= link_to(sortable "title") %></th>
@@ -116,7 +121,7 @@
 			<% end %>	
 
 			<% @books.each do |book| %>
-				<tr>
+				<tr class="clickable-row">
 					<td id="worded-column"><%= book.title %></td>
 					<td id="worded-column"><%= book.author %></td>
 					<td id="worded-column"><%= book.pages %></td>

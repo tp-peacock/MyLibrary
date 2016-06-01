@@ -30,3 +30,22 @@ function book_start_date() {
 function book_end_date() {
     $("#book_end_date").pickadate()
 }
+
+$(function() {
+  $('#book-table').on('click', '.clickable-row', function() {
+    if($(this).hasClass('bg-info')){
+      $(this).removeClass('bg-info'); 
+    } else {
+      $(this).addClass('bg-info').siblings().removeClass('bg-info');
+    }
+    if( document.getElementById("selected-book-details").style.display=='none' ){
+      document.getElementById("selected-book-details").style.display = '';
+    }else{
+      document.getElementById("selected-book-details").style.display = 'none';
+      }
+    if($('.selected-book-details').is(':hidden')){
+      $('.selected-book-details').slideDown(1000);
+    }
+    document.getElementById("selected-book-details").innerHTML = "5 + 6";
+  });
+});
