@@ -31,7 +31,13 @@ function book_end_date() {
     $("#book_end_date").pickadate()
 }
 
+function myFunction(x) {
+    return x.rowIndex - 2;
+}
+
+
 $(function() {
+
   $('#book-table').on('click', '.clickable-row', function() {
     if($(this).hasClass('bg-info')){
       $(this).removeClass('bg-info'); 
@@ -46,6 +52,8 @@ $(function() {
     if($('.selected-book-details').is(':hidden')){
       $('.selected-book-details').slideDown(1000);
     }
-    document.getElementById("selected-book-details").innerHTML = "5 + 6";
+  
+   document.getElementById("selected-book-details").innerHTML = "Estimated time to complete book: " + gon.book_titles[myFunction(this)];
+
   });
 });

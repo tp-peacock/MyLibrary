@@ -1,3 +1,5 @@
+<%= Gon::Base.render_data({}) %>
+
 <% provide(:title, "Books List") %>
 
 <!DOCTYPE html>
@@ -60,7 +62,8 @@
 <% end %>
 		
 <div id="selected-book-details" style="display:none;">
-	<p></p>
+	<p>
+	</p>
 </div>
 
 
@@ -120,8 +123,9 @@
 				</tr>
 			<% end %>	
 
+			<% book_count = 0 %>
 			<% @books.each do |book| %>
-				<tr class="clickable-row">
+				<tr onclick = "myFunction(this)" class="clickable-row">
 					<td id="worded-column"><%= book.title %></td>
 					<td id="worded-column"><%= book.author %></td>
 					<td id="worded-column"><%= book.pages %></td>
@@ -133,10 +137,13 @@
 					<td id="check-box-column"><%= link_to("Edit", {:action => 'edit', :id => book.id}) %>
 					<td id="check-box-column"><%= link_to("Delete", {:action => 'destroy', :id => book.id, :class => 'btn btn-mini btn-danger' } ) %>
 				</tr>
+				<%book_count += 1 %>
 			<% end %>
 		</tbody>
 	</table>
 </div>
+
+
 
 </body>
 </html>
