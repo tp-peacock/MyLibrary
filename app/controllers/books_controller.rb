@@ -12,6 +12,11 @@ class BooksController < ApplicationController
     else
       current_user.books.order(ordering)
     end
+    book_titles = []
+    @books.each do |book|
+      book_titles.append(book.title)
+    end
+    gon.book_titles = book_titles
   end
 
   def create    
